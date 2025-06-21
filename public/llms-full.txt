@@ -1,0 +1,232 @@
+# MyDailyDevTools
+
+> Essential developer tools for everyday tasks. Fast, free, and privacy-focused web tools including JSON formatter, URL encoder, Base64 converter, hash generator, password generator, text diff checker, UUID generator, QR code generator, and delimiter converter.
+
+## Overview
+
+MyDailyDevTools provides a comprehensive suite of developer utilities that run entirely in the browser. No data is sent to servers, ensuring complete privacy. All tools are free to use and require no registration.
+
+## Tool Documentation
+
+### JSON Formatter (/json-formatter)
+
+Formats, validates, and minifies JSON data with syntax highlighting and error detection.
+
+**Features:**
+- Format messy JSON with proper indentation
+- Validate JSON syntax with detailed error messages
+- Minify JSON to reduce size
+- Copy formatted output with one click
+- Handle large JSON files efficiently
+
+**Example Use Cases:**
+- Format API responses for readability
+- Validate JSON configuration files
+- Minify JSON for production use
+- Debug JSON parsing errors
+
+### URL Encoder/Decoder (/url-encoder)
+
+Safely encode and decode URLs for web use, handling special characters and Unicode.
+
+**Features:**
+- Encode text to URL-safe format
+- Decode URL-encoded strings
+- Handle Unicode characters properly
+- Support for query parameters
+- Real-time conversion
+
+**Example Use Cases:**
+- Encode query parameters for API calls
+- Decode encoded URLs from logs
+- Prepare URLs for sharing
+- Handle international characters in URLs
+
+### Base64 Encoder/Decoder (/base64)
+
+Convert between text/binary data and Base64 format for data transmission and storage.
+
+**Features:**
+- Encode text to Base64
+- Decode Base64 to text
+- Support for file encoding
+- Handle binary data
+- URL-safe Base64 variant
+
+**Example Use Cases:**
+- Encode credentials for Basic Authentication
+- Embed images in CSS/HTML
+- Transmit binary data in JSON
+- Decode Base64 data from APIs
+
+### Hash Generator (/hash-generator)
+
+Generate cryptographic hashes using multiple algorithms for data integrity and security.
+
+**Features:**
+- MD5 hash generation (128-bit)
+- SHA-256 hash generation (256-bit)
+- SHA-512 hash generation (512-bit)
+- Real-time hashing as you type
+- Copy hash with one click
+
+**Example Use Cases:**
+- Verify file integrity
+- Generate checksums for downloads
+- Create unique identifiers
+- Password hashing (for comparison)
+
+### Password Generator (/password-generator)
+
+Create strong, secure passwords with customizable criteria.
+
+**Features:**
+- Adjustable length (4-128 characters)
+- Include/exclude uppercase letters
+- Include/exclude lowercase letters
+- Include/exclude numbers
+- Include/exclude special characters
+- Exclude ambiguous characters option
+- Generate multiple passwords at once
+
+**Example Use Cases:**
+- Create secure account passwords
+- Generate API keys
+- Create temporary passwords
+- Bulk password generation for testing
+
+### Text Diff Checker (/text-diff)
+
+Compare two texts side-by-side with visual highlighting of differences.
+
+**Features:**
+- Line-by-line comparison
+- Character-level diff highlighting
+- Added/removed/modified line indicators
+- Unified or split view modes
+- Handle large text files
+
+**Example Use Cases:**
+- Compare code versions
+- Review document changes
+- Verify configuration differences
+- Check log file variations
+
+### UUID Generator (/uuid-generator)
+
+Generate universally unique identifiers (UUID v4) for various applications.
+
+**Features:**
+- Generate single UUID v4
+- Bulk generation (up to 100 at once)
+- Multiple format options (uppercase, lowercase, no hyphens)
+- Copy individual or all UUIDs
+- Guaranteed uniqueness
+
+**Example Use Cases:**
+- Database primary keys
+- Session identifiers
+- Temporary file names
+- API request IDs
+
+### QR Code Generator (/qr-generator)
+
+Create QR codes for text, URLs, or any data with customizable size.
+
+**Features:**
+- Generate QR codes for any text
+- Adjustable size (100-500 pixels)
+- Error correction levels
+- Download as PNG image
+- Real-time preview
+
+**Example Use Cases:**
+- Share WiFi credentials
+- Create mobile-friendly links
+- Generate contact information
+- Encode configuration data
+
+### Delimiter Converter (/delimiter-converter)
+
+Convert between different delimiter formats with automatic detection, perfect for Excel data.
+
+**Features:**
+- Auto-detect input delimiter (NEW!)
+- Convert between CSV, TSV, pipe, semicolon, etc.
+- Handle Excel copy/paste seamlessly
+- Custom delimiter support
+- Preserve quoted fields
+- Download converted files
+
+**Example Use Cases:**
+- Convert Excel data to CSV
+- Change delimiter for database imports
+- Process data from different systems
+- Clean up inconsistent data formats
+
+## Technical Implementation
+
+### Privacy Features
+- No server-side processing
+- No data logging or storage
+- No cookies without consent
+- No external API calls for tools
+- Local browser storage only
+
+### Performance Optimizations
+- Client-side processing using Web APIs
+- Efficient algorithms for large data
+- Lazy loading of tool components
+- Optimized for mobile devices
+- Fast page loads with Next.js
+
+### Browser Compatibility
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+- Mobile browsers supported
+
+## GDPR Compliance
+
+The site is fully compliant with GDPR and Dutch DPA requirements:
+- Explicit cookie consent required
+- No cookie walls
+- Full functionality without tracking
+- Clear privacy and cookie policies
+- User rights respected
+
+## Integration Examples
+
+### Using with Development Workflows
+
+1. **API Development**: Use JSON formatter to debug API responses
+2. **Database Work**: Convert Excel exports to CSV for imports
+3. **Security**: Generate hashes for file verification
+4. **Frontend**: Encode data for URL parameters
+
+### Automation Tips
+
+While the tools are web-based, you can:
+- Bookmark specific tools for quick access
+- Use browser developer tools for automation
+- Create bookmarklets for common tasks
+- Use keyboard shortcuts where available
+
+## Future Enhancements
+
+Planned features include:
+- XML formatter
+- JWT decoder
+- Regex tester
+- Color picker
+- Timestamp converter
+- More encoding formats
+
+## Support and Feedback
+
+For issues or suggestions:
+- Website: https://mydailydevtools.com
+- Privacy concerns: privacy@mydailydevtools.com
+
+All tools are provided as-is for developer convenience. Not intended for production security applications.

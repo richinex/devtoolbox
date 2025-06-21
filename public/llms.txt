@@ -1,0 +1,62 @@
+# MyDailyDevTools
+
+> Essential developer tools for everyday tasks. Fast, free, and privacy-focused web tools including JSON formatter, URL encoder, Base64 converter, hash generator, password generator, text diff checker, UUID generator, QR code generator, and delimiter converter.
+
+## Overview
+
+MyDailyDevTools provides a comprehensive suite of developer utilities that run entirely in the browser. No data is sent to servers, ensuring complete privacy. All tools are free to use and require no registration.
+
+## Available Tools
+
+### Text & Data Tools
+- **JSON Formatter** (/json-formatter): Format, validate, and minify JSON data with syntax highlighting
+- **Base64 Encoder/Decoder** (/base64): Encode and decode text or files to/from Base64 format
+- **Text Diff Checker** (/text-diff): Compare two texts side-by-side with highlighted differences
+- **Delimiter Converter** (/delimiter-converter): Convert between CSV, TSV, pipe-delimited and custom formats with auto-detection for Excel paste
+
+### Security & Hashing
+- **Hash Generator** (/hash-generator): Generate MD5, SHA-256, and SHA-512 hashes for any input
+- **Password Generator** (/password-generator): Create secure passwords with customizable length and character types
+
+### Web & URLs
+- **URL Encoder/Decoder** (/url-encoder): Safely encode and decode URLs for web use
+- **QR Code Generator** (/qr-generator): Generate QR codes for text, URLs, or any data
+
+### Identifiers
+- **UUID Generator** (/uuid-generator): Generate version 4 UUIDs with bulk generation support
+
+## Key Features
+
+- **Privacy First**: All processing happens client-side in the browser
+- **No Registration**: Use all tools immediately without creating an account
+- **Fast Performance**: Optimized for speed with Next.js and React
+- **Mobile Friendly**: Responsive design works on all devices
+- **Free Forever**: Supported by non-intrusive advertising
+- **GDPR Compliant**: Cookie consent with full functionality without tracking
+
+## Technical Details
+
+Built with:
+- Next.js 14 (App Router)
+- TypeScript for type safety
+- Tailwind CSS for styling
+- React hooks for state management
+- Client-side processing for privacy
+
+## API Usage
+
+All tools are web-based and do not provide programmatic APIs. For automation needs, consider using the browser's developer console to interact with the tools.
+
+## Privacy and Compliance
+
+- GDPR compliant with cookie consent banner
+- No personal data collection without consent
+- All tool processing happens locally
+- Google Analytics only with explicit consent
+- No cookie walls - full functionality without cookies
+
+## Contact
+
+Website: https://mydailydevtools.com
+Privacy Policy: https://mydailydevtools.com/privacy-policy
+Cookie Policy: https://mydailydevtools.com/cookie-policy
