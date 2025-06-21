@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevToolbox - Passive Income Developer Tools
 
-## Getting Started
+A collection of essential developer utilities designed to generate passive income through high search traffic and ad monetization.
 
-First, run the development server:
+## 🚀 Live Demo
+
+Visit: [DevToolbox](https://devtoolbox.vercel.app)
+
+## 🛠️ Tools Included
+
+- **JSON Formatter** - Format, validate, and beautify JSON data
+- **URL Encoder/Decoder** - Safe URL encoding and decoding
+- **Base64 Encoder/Decoder** - Text and data encoding/decoding
+- **Hash Generator** - Generate MD5, SHA-256, SHA-512 hashes
+- **Password Generator** - Create secure passwords with custom criteria
+- **Text Diff Checker** - Compare text differences side-by-side
+- **UUID Generator** - Generate unique identifiers (v1, v3, v4, v5)
+- **QR Code Generator** - Create QR codes from text/URLs
+- **Delimiter Converter** - Convert between CSV, TSV, pipe, and custom delimited formats
+
+
+## 🔧 Tech Stack
+
+- **Next.js 14** (App Router) with TypeScript
+- **Tailwind CSS** for styling
+- **Vercel** for deployment
+- **Client-side processing** for privacy and speed
+
+## 📊 Analytics
+
+- Google Analytics 4 for visitor insights
+- Performance monitoring
+
+## 🚀 Deployment
+
+### Quick Deploy to Vercel
+
+1. Fork this repository
+2. Connect to Vercel
+3. Add environment variables:
+   - `NEXT_PUBLIC_GA_MEASUREMENT_ID` - Google Analytics ID
+4. Deploy!
+
+### Environment Variables
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📈 SEO Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Individual page optimization for each tool
+- Structured data markup
+- Sitemap.xml generation
+- Mobile-responsive design
+- Fast loading times
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔒 Privacy & Security
 
-## Learn More
+- All tools work client-side
+- No data sent to servers
+- Privacy-focused design
+- Secure headers configuration
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
+4. Visit `http://localhost:3000`
 
-## Deploy on Vercel
+## 🎯 Target Keywords
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- "json formatter online"
+- "url encoder decoder"
+- "base64 encode decode"
+- "password generator secure"
+- "hash generator md5 sha256"
+- "uuid generator online"
+- "qr code generator"
+- "delimiter converter csv tsv"
+- And more high-traffic developer tool keywords
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+
+MIT License
