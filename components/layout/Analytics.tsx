@@ -20,6 +20,9 @@ export default function Analytics() {
     return null
   }
 
+  // Check for cookie consent
+  const hasConsent = typeof window !== 'undefined' ? localStorage.getItem('cookieConsent') : null
+
   return (
     <>
       <Script
@@ -34,6 +37,13 @@ export default function Analytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+            
+            // Default to denied until consent is given
+            gtag('consent', 'default', {
+              'analytics_storage': '${hasConsent === 'true' ? 'granted' : 'denied'}',
+              'ad_storage': '${hasConsent === 'true' ? 'granted' : 'denied'}'
+            });
+            
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
             });

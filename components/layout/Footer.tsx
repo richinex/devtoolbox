@@ -29,7 +29,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
-              <span className="text-2xl font-bold text-blue-400">DevToolbox</span>
+              <span className="text-2xl font-bold text-blue-400">MyDailyDevTools</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Essential developer tools for everyday tasks. Fast, free, and privacy-focused.
@@ -68,13 +68,17 @@ export default function Footer() {
                 Home
               </Link>
               <span className="text-gray-600">|</span>
-              <span className="text-gray-400 text-sm">
-                Privacy-First Tools
-              </span>
+              <Link href="/privacy-policy" className="text-gray-400 hover:text-white text-sm">
+                Privacy Policy
+              </Link>
+              <span className="text-gray-600">|</span>
+              <Link href="/cookie-policy" className="text-gray-400 hover:text-white text-sm">
+                Cookie Policy
+              </Link>
             </div>
             
             <div className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} DevToolbox. All rights reserved.
+              © {new Date().getFullYear()} MyDailyDevTools. All rights reserved.
             </div>
           </div>
         </div>

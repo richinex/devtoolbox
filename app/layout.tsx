@@ -5,6 +5,7 @@ import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import StructuredData, { organizationStructuredData, websiteStructuredData } from "@/components/seo/StructuredData";
+import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,6 +73,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <CookieConsent />
       </body>
     </html>
   );
