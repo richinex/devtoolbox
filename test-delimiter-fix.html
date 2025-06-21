@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Delimiter Converter</title>
+</head>
+<body>
+    <h1>Test Delimiter Converter Fix</h1>
+    <p>Testing conversion from Excel column paste (newline-separated) to other formats</p>
+    
+    <script>
+        // Simulate the parseCSV function
+        function parseCSV(text, delimiter) {
+            if (!text.trim()) return [];
+            
+            // Special handling for newline delimiter (single column data)
+            if (delimiter === '\n') {
+                return text.split('\n')
+                    .filter(line => line.trim())
+                    .map(line => [line.trim()]);
+            }
+            
+            // Regular parsing...
+            const rows = [];
+            const lines = text.split('\n');
+            
+            for (const line of lines) {
+                if (!line.trim()) continue;
+                
+                const row = [];
+                let current = '';
+                let i = 0;
+                
+                while (i < line.length) {
+                    if (line.substring(i, i + delimiter.length) === delimiter) {
+                        row.push(current.trim());
+                        current = '';
+                        i += delimiter.length;
+                        continue;
+                    }
+                    current += line[i];
+                    i++;
+                }
+                
+                row.push(current.trim());
+                rows.push(row);
+            }
+            
+            return rows;
+        }
+        
+        // Simulate the formatCSV function with fix
+        function formatCSV(rows, delimiter) {
+            // Special handling when converting FROM single-column data
+            const isSingleColumn = rows.every(row => row.length === 1);
+            
+            if (isSingleColumn && delimiter !== '\n') {
+                // Convert single column to single row
+                const singleRow = rows.map(row => row[0]);
+                return singleRow.join(delimiter);
+            }
+            
+            // Special handling for newline delimiter output
+            if (delimiter === '\n') {
+                return rows.flat().join('\n');
+            }
+            
+            // Standard CSV formatting
+            return rows.map(row => row.join(delimiter)).join('\n');
+        }
+        
+        // Test cases
+        console.log("Test 1: Excel column paste (123\\n456\\n789) to semicolon");
+        const input1 = "123\n456\n789";
+        const parsed1 = parseCSV(input1, '\n');
+        console.log("Parsed:", parsed1);
+        const output1 = formatCSV(parsed1, ';');
+        console.log("Output:", output1);
+        console.log("Expected: 123;456;789");
+        console.log("Pass:", output1 === "123;456;789");
+        
+        console.log("\nTest 2: Excel column paste to comma");
+        const output2 = formatCSV(parsed1, ',');
+        console.log("Output:", output2);
+        console.log("Expected: 123,456,789");
+        console.log("Pass:", output2 === "123,456,789");
+        
+        console.log("\nTest 3: Comma to newline");
+        const input3 = "a,b,c";
+        const parsed3 = parseCSV(input3, ',');
+        console.log("Parsed:", parsed3);
+        const output3 = formatCSV(parsed3, '\n');
+        console.log("Output:", output3);
+        console.log("Expected: a\\nb\\nc");
+        console.log("Pass:", output3 === "a\nb\nc");
+        
+        console.log("\nTest 4: Multi-row CSV to newline");
+        const input4 = "a,b,c\n1,2,3";
+        const parsed4 = parseCSV(input4, ',');
+        console.log("Parsed:", parsed4);
+        const output4 = formatCSV(parsed4, '\n');
+        console.log("Output:", output4);
+        console.log("Expected: a\\nb\\nc\\n1\\n2\\n3");
+        console.log("Pass:", output4 === "a\nb\nc\n1\n2\n3");
+    </script>
+</body>
+</html>

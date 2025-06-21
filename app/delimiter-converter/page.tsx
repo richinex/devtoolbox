@@ -169,6 +169,37 @@ export default function DelimiterConverter() {
   }
 
   const formatCSV = (rows: string[][], delimiter: string): string => {
+    // Special handling when converting FROM single-column data (newline separated)
+    // If all rows have exactly one column, we assume it's single-column data
+    // and should be converted to a single row with multiple columns
+    const isSingleColumn = rows.every(row => row.length === 1)
+    
+    if (isSingleColumn && delimiter !== '\n') {
+      // Convert single column to single row
+      const singleRow = rows.map(row => row[0])
+      return singleRow.map(cell => {
+        const needsQuoting = preserveQuotes && (
+          cell.includes(delimiter) || 
+          cell.includes('"') || 
+          cell.includes('\n') ||
+          cell.includes('\r')
+        )
+        
+        if (needsQuoting) {
+          return `"${cell.replace(/"/g, '""')}"`
+        }
+        
+        return cell
+      }).join(delimiter)
+    }
+    
+    // Special handling for newline delimiter output
+    if (delimiter === '\n') {
+      // Flatten all cells into a single column
+      return rows.flat().join('\n')
+    }
+    
+    // Standard CSV formatting
     return rows.map(row => {
       return row.map(cell => {
         const needsQuoting = preserveQuotes && (
