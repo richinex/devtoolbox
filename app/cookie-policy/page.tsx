@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Card, CardHeader, CardContent } from '@/components/ui/Card'
+import { Card, CardContent } from '@/components/ui/Card'
 
 export default function CookiePolicy() {
   return (
@@ -109,9 +109,9 @@ export default function CookiePolicy() {
               You can change your cookie preferences at any time by:
             </p>
             <ul>
-              <li>Clearing your browser's cookies for this site</li>
+              <li>Clearing your browser&apos;s cookies for this site</li>
               <li>Revisiting the site to see the consent banner again</li>
-              <li>Using your browser's cookie management tools</li>
+              <li>Using your browser&apos;s cookie management tools</li>
             </ul>
 
             <h2>6. Third-Party Services</h2>
@@ -154,15 +154,15 @@ export default function CookiePolicy() {
             </p>
             <ul>
               <li>All developer tools will continue to work normally</li>
-              <li>We won't be able to track usage analytics</li>
+              <li>We won&apos;t be able to track usage analytics</li>
               <li>You may see less relevant advertisements</li>
-              <li>Your cookie preference won't be remembered</li>
+              <li>Your cookie preference won&apos;t be remembered</li>
             </ul>
 
             <h2>9. Updates to This Policy</h2>
             <p>
               We may update this Cookie Policy to reflect changes in our practices or legal requirements. 
-              Check the "Last updated" date for the latest version.
+              Check the &ldquo;Last updated&rdquo; date for the latest version.
             </p>
 
             <h2>10. Contact Us</h2>

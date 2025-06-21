@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Card, CardHeader, CardContent } from '@/components/ui/Card'
+import { Card, CardContent } from '@/components/ui/Card'
 
 export default function PrivacyPolicy() {
   return (
@@ -17,7 +17,7 @@ export default function PrivacyPolicy() {
           <CardContent className="p-8">
             <h2>1. Introduction</h2>
             <p>
-              MyDailyDevTools ("we", "our", or "us") operates the website mydailydevtools.com. 
+              MyDailyDevTools (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) operates the website mydailydevtools.com. 
               This Privacy Policy explains how we collect, use, and protect your information when 
               you use our website and services.
             </p>
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
               <li>Limited access to analytics data</li>
             </ul>
 
-            <h2>8. Children's Privacy</h2>
+            <h2>8. Children&apos;s Privacy</h2>
             <p>
               Our services are not directed to children under 16. We do not knowingly collect 
               personal information from children.
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
             <h2>9. Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy periodically. We will notify you of any changes 
-              by posting the new policy on this page and updating the "Last updated" date.
+              by posting the new policy on this page and updating the &ldquo;Last updated&rdquo; date.
             </p>
 
             <h2>10. Contact Us</h2>

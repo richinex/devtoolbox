@@ -5,21 +5,17 @@ import { Button } from '@/components/ui/Button'
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false)
-  const [hasConsent, setHasConsent] = useState<boolean | null>(null)
 
   useEffect(() => {
     // Check if user has already made a choice
     const consent = localStorage.getItem('cookieConsent')
     if (consent === null) {
       setShowBanner(true)
-    } else {
-      setHasConsent(consent === 'true')
     }
   }, [])
 
   const handleAccept = () => {
     localStorage.setItem('cookieConsent', 'true')
-    setHasConsent(true)
     setShowBanner(false)
     
     // Enable Google Analytics
@@ -36,7 +32,6 @@ export default function CookieConsent() {
 
   const handleReject = () => {
     localStorage.setItem('cookieConsent', 'false')
-    setHasConsent(false)
     setShowBanner(false)
     
     // Disable Google Analytics
@@ -56,7 +51,7 @@ export default function CookieConsent() {
         <div className="text-sm text-gray-700">
           <p>
             We use cookies to improve your experience and analyze site traffic. 
-            By clicking "Accept", you consent to our use of cookies. 
+            By clicking &ldquo;Accept&rdquo;, you consent to our use of cookies. 
             Read our{' '}
             <a href="/privacy-policy" className="text-blue-600 hover:underline">
               Privacy Policy
