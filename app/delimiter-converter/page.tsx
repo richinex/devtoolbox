@@ -32,9 +32,74 @@ export default function DelimiterConverter() {
   const [error, setError] = useState('')
   const [hasHeader, setHasHeader] = useState(true)
   const [preserveQuotes, setPreserveQuotes] = useState(true)
+  const [detectedDelimiter, setDetectedDelimiter] = useState<string | null>(null)
+  const [autoDetect, setAutoDetect] = useState(true)
 
   const getActualDelimiter = (selected: string, custom: string): string => {
     return selected === 'custom' ? custom : selected
+  }
+
+  const detectDelimiter = (text: string): string => {
+    // Common delimiters to check
+    const delimitersToCheck = [
+      { delimiter: '\t', name: 'Tab' },
+      { delimiter: ',', name: 'Comma' },
+      { delimiter: ';', name: 'Semicolon' },
+      { delimiter: '|', name: 'Pipe' },
+      { delimiter: ':', name: 'Colon' },
+    ]
+    
+    // Get first few lines for analysis
+    const lines = text.split('\n').filter(line => line.trim()).slice(0, 10)
+    if (lines.length === 0) return ','
+    
+    // Count occurrences of each delimiter
+    const delimiterCounts: Record<string, number[]> = {}
+    
+    for (const { delimiter } of delimitersToCheck) {
+      delimiterCounts[delimiter] = lines.map(line => {
+        // Count delimiter occurrences, but ignore those within quotes
+        let count = 0
+        let inQuotes = false
+        for (let i = 0; i < line.length; i++) {
+          if (line[i] === '"') {
+            inQuotes = !inQuotes
+          } else if (!inQuotes && line.substring(i, i + delimiter.length) === delimiter) {
+            count++
+          }
+        }
+        return count
+      })
+    }
+    
+    // Find delimiter with most consistent count across lines
+    let bestDelimiter = ','
+    let bestScore = -1
+    
+    for (const { delimiter } of delimitersToCheck) {
+      const counts = delimiterCounts[delimiter]
+      if (counts.length === 0 || counts[0] === 0) continue
+      
+      // Check if counts are consistent across lines
+      const firstCount = counts[0]
+      const isConsistent = counts.every(count => count === firstCount)
+      const avgCount = counts.reduce((a, b) => a + b, 0) / counts.length
+      
+      // Score based on consistency and average count
+      const score = isConsistent ? avgCount * 2 : avgCount
+      
+      if (score > bestScore) {
+        bestScore = score
+        bestDelimiter = delimiter
+      }
+    }
+    
+    // Special check for Excel paste (tab-delimited)
+    if (bestDelimiter === '\t' && lines.every(line => line.includes('\t'))) {
+      return '\t'
+    }
+    
+    return bestDelimiter
   }
 
   const parseCSV = (text: string, delimiter: string): string[][] => {
@@ -143,14 +208,19 @@ export default function DelimiterConverter() {
   }, [input, inputDelimiter, outputDelimiter, customInputDelimiter, customOutputDelimiter, preserveQuotes])
 
   const loadSampleData = () => {
-    const sampleCSV = `Name,Age,City,Country
-John Doe,30,New York,USA
-Jane Smith,25,London,UK
-"Johnson, Mike",35,"Los Angeles, CA",USA
-Marie Dupont,28,Paris,France`
-    setInput(sampleCSV)
-    setInputDelimiter(',')
-    setOutputDelimiter('\t')
+    // Tab-separated data (like Excel paste)
+    const sampleTSV = `Name	Age	City	Country
+John Doe	30	New York	USA
+Jane Smith	25	London	UK
+Johnson, Mike	35	Los Angeles, CA	USA
+Marie Dupont	28	Paris	France`
+    setInput(sampleTSV)
+    if (autoDetect) {
+      const detected = detectDelimiter(sampleTSV)
+      setDetectedDelimiter(detected)
+      setInputDelimiter(detected)
+    }
+    setOutputDelimiter(';')
   }
 
   const clearAll = () => {
@@ -303,6 +373,16 @@ Marie Dupont,28,Paris,France`
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  checked={autoDetect}
+                  onChange={(e) => setAutoDetect(e.target.checked)}
+                  className="mr-2"
+                />
+                <span className="text-sm">Auto-detect input delimiter</span>
+              </label>
+              
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
                   checked={hasHeader}
                   onChange={(e) => setHasHeader(e.target.checked)}
                   className="mr-2"
@@ -340,11 +420,23 @@ Marie Dupont,28,Paris,France`
             <CardContent>
               <Textarea
                 value={input}
-                onChange={setInput}
-                placeholder="Paste your delimited data here..."
+                onChange={(value) => {
+                  setInput(value)
+                  if (autoDetect && value.trim()) {
+                    const detected = detectDelimiter(value)
+                    setDetectedDelimiter(detected)
+                    setInputDelimiter(detected)
+                  }
+                }}
+                placeholder="Paste your delimited data here (Excel, CSV, TSV, etc.)..."
                 rows={12}
                 className="font-mono text-sm"
               />
+              {detectedDelimiter && autoDetect && (
+                <p className="text-sm text-green-600 mt-2">
+                  Auto-detected delimiter: {detectedDelimiter === '\t' ? 'Tab' : detectedDelimiter === ' ' ? 'Space' : `"${detectedDelimiter}"`}
+                </p>
+              )}
             </CardContent>
           </Card>
 
@@ -399,6 +491,7 @@ Marie Dupont,28,Paris,France`
             </CardHeader>
             <CardContent>
               <ul className="text-sm text-gray-600 space-y-2">
+                <li>• <strong>Excel paste:</strong> Auto-detects tab delimiters from Excel copy/paste</li>
                 <li>• <strong>CSV to TSV:</strong> Convert Excel exports for database imports</li>
                 <li>• <strong>Pipe to CSV:</strong> Process database exports for Excel</li>
                 <li>• <strong>Custom delimiters:</strong> Handle legacy system formats</li>
@@ -414,12 +507,12 @@ Marie Dupont,28,Paris,France`
             </CardHeader>
             <CardContent>
               <ul className="text-sm text-gray-600 space-y-2">
+                <li>• <strong>Auto-detection:</strong> Automatically detects delimiter when you paste</li>
                 <li>• <strong>Auto-conversion:</strong> Updates output as you change settings</li>
                 <li>• <strong>Quote handling:</strong> Properly handles quoted fields with delimiters</li>
                 <li>• <strong>Custom delimiters:</strong> Support any character or string</li>
                 <li>• <strong>File download:</strong> Save as CSV, TSV, or TXT</li>
                 <li>• <strong>Privacy first:</strong> All processing happens in your browser</li>
-                <li>• <strong>Large files:</strong> Handles thousands of rows efficiently</li>
               </ul>
             </CardContent>
           </Card>
