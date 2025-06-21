@@ -6,7 +6,7 @@
   "devCommand": "npm run dev",
   "env": {
     "NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-QVRS9C48CT",
-    "NEXT_PUBLIC_ADSENSE_CLIENT_ID": ""
+    "NEXT_PUBLIC_ADSENSE_CLIENT_ID": "ca-pub-1647044477984258"
   },
   "headers": [
     {
