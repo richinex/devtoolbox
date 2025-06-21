@@ -19,6 +19,7 @@ const delimiterOptions: DelimiterOption[] = [
   { label: 'Pipe', value: '|', description: 'Pipe-separated values' },
   { label: 'Colon', value: ':', description: 'Colon-separated values' },
   { label: 'Space', value: ' ', description: 'Space-separated values' },
+  { label: 'Newline', value: '\n', description: 'One value per line (Excel column)' },
   { label: 'Custom', value: 'custom', description: 'Custom delimiter' },
 ]
 
@@ -40,6 +41,18 @@ export default function DelimiterConverter() {
   }
 
   const detectDelimiter = (text: string): string => {
+    // First check if it's newline-separated (single column from Excel)
+    const lines = text.split('\n').filter(line => line.trim())
+    if (lines.length > 1) {
+      // Check if all lines have no common delimiters
+      const hasNoDelimiters = lines.every(line => {
+        return !line.includes('\t') && !line.includes(',') && !line.includes(';') && !line.includes('|')
+      })
+      if (hasNoDelimiters) {
+        return '\n'
+      }
+    }
+    
     // Common delimiters to check
     const delimitersToCheck = [
       { delimiter: '\t', name: 'Tab' },
@@ -50,14 +63,14 @@ export default function DelimiterConverter() {
     ]
     
     // Get first few lines for analysis
-    const lines = text.split('\n').filter(line => line.trim()).slice(0, 10)
-    if (lines.length === 0) return ','
+    const sampleLines = lines.slice(0, 10)
+    if (sampleLines.length === 0) return ','
     
     // Count occurrences of each delimiter
     const delimiterCounts: Record<string, number[]> = {}
     
     for (const { delimiter } of delimitersToCheck) {
-      delimiterCounts[delimiter] = lines.map(line => {
+      delimiterCounts[delimiter] = sampleLines.map(line => {
         // Count delimiter occurrences, but ignore those within quotes
         let count = 0
         let inQuotes = false
@@ -95,7 +108,7 @@ export default function DelimiterConverter() {
     }
     
     // Special check for Excel paste (tab-delimited)
-    if (bestDelimiter === '\t' && lines.every(line => line.includes('\t'))) {
+    if (bestDelimiter === '\t' && sampleLines.every(line => line.includes('\t'))) {
       return '\t'
     }
     
@@ -104,6 +117,13 @@ export default function DelimiterConverter() {
 
   const parseCSV = (text: string, delimiter: string): string[][] => {
     if (!text.trim()) return []
+    
+    // Special handling for newline delimiter (single column data)
+    if (delimiter === '\n') {
+      return text.split('\n')
+        .filter(line => line.trim())
+        .map(line => [line.trim()])
+    }
     
     const rows: string[][] = []
     const lines = text.split('\n')
@@ -434,7 +454,12 @@ Marie Dupont	28	Paris	France`
               />
               {detectedDelimiter && autoDetect && (
                 <p className="text-sm text-green-600 mt-2">
-                  Auto-detected delimiter: {detectedDelimiter === '\t' ? 'Tab' : detectedDelimiter === ' ' ? 'Space' : `"${detectedDelimiter}"`}
+                  Auto-detected delimiter: {
+                    detectedDelimiter === '\t' ? 'Tab' : 
+                    detectedDelimiter === ' ' ? 'Space' : 
+                    detectedDelimiter === '\n' ? 'Newline (Excel column)' :
+                    `"${detectedDelimiter}"`
+                  }
                 </p>
               )}
             </CardContent>
