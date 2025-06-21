@@ -5,7 +5,6 @@ import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import StructuredData, { organizationStructuredData, websiteStructuredData } from "@/components/seo/StructuredData";
-import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +32,11 @@ export default function RootLayout({
         <StructuredData data={organizationStructuredData} />
         <StructuredData data={websiteStructuredData} />
         <meta name="google-adsense-account" content="ca-pub-1647044477984258" />
+        <Script
+          async
+          src="https://fundingchoicesmessages.google.com/i/ca-pub-1647044477984258?ers=1"
+          strategy="afterInteractive"
+        />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1647044477984258"
@@ -72,7 +76,6 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
-        <CookieConsent />
       </body>
     </html>
   );
