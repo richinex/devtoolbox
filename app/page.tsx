@@ -14,6 +14,12 @@ const tools = [
     icon: '{}',
   },
   {
+    title: 'JSON Fixer',
+    description: 'Fix and format broken JSON automatically',
+    href: '/json-fixer',
+    icon: '🔧',
+  },
+  {
     title: 'JSON ↔ YAML Converter',
     description: 'Convert between JSON and YAML formats',
     href: '/json-yaml-converter',
