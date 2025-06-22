@@ -55,18 +55,20 @@ export default function JsonYamlConverter() {
             if (entries.length === 0) return '{}'
             
             return entries.map(([key, value]) => {
-                const yamlValue = jsonToYaml(value, indent + indentSize)
                 const needsQuotes = key.includes(' ') || key.includes(':') || key.match(/^[\d.]+$/)
                 const yamlKey = needsQuotes ? JSON.stringify(key) : key
                 
                 if (typeof value === 'object' && value !== null && !Array.isArray(value) && Object.keys(value).length > 0) {
-                    return '\n' + spaces + yamlKey + ':' + yamlValue
+                    const yamlValue = jsonToYaml(value, indent + indentSize)
+                    return spaces + yamlKey + ':\n' + yamlValue
                 } else if (Array.isArray(value) && value.length > 0) {
-                    return '\n' + spaces + yamlKey + ':' + yamlValue
+                    const yamlValue = jsonToYaml(value, indent + indentSize)
+                    return spaces + yamlKey + ':' + yamlValue
                 } else {
-                    return '\n' + spaces + yamlKey + ': ' + yamlValue
+                    const yamlValue = jsonToYaml(value, indent + indentSize)
+                    return spaces + yamlKey + ': ' + yamlValue
                 }
-            }).join('').trim()
+            }).map((line, i) => (i === 0 ? line : '\n' + line)).join('')
         }
         
         return String(obj)
