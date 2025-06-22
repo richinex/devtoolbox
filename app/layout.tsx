@@ -16,6 +16,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export const metadata: Metadata = {
   title: "Free Online Developer Tools - JSON Formatter, Base64, URL Encoder | MyDailyDevTools",
   description: "Best free online developer tools: JSON formatter, URL encoder/decoder, Base64 converter, hash generator, password generator, text diff, UUID generator, QR codes. No signup, privacy-focused, works offline.",

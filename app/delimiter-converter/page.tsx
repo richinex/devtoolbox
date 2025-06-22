@@ -420,44 +420,44 @@ Marie Dupont	28	Paris	France`
             </div>
 
             {/* Options */}
-            <div className="mt-4 flex flex-wrap gap-4">
-              <label className="flex items-center">
+            <div className="mt-4 flex flex-col sm:flex-row sm:flex-wrap gap-4">
+              <label className="flex items-center p-2 -m-2 cursor-pointer hover:bg-gray-50 rounded">
                 <input
                   type="checkbox"
                   checked={autoDetect}
                   onChange={(e) => setAutoDetect(e.target.checked)}
-                  className="mr-2"
+                  className="mr-3 w-5 h-5"
                 />
-                <span className="text-sm">Auto-detect input delimiter</span>
+                <span className="text-sm select-none">Auto-detect input delimiter</span>
               </label>
               
-              <label className="flex items-center">
+              <label className="flex items-center p-2 -m-2 cursor-pointer hover:bg-gray-50 rounded">
                 <input
                   type="checkbox"
                   checked={hasHeader}
                   onChange={(e) => setHasHeader(e.target.checked)}
-                  className="mr-2"
+                  className="mr-3 w-5 h-5"
                 />
-                <span className="text-sm">First row is header</span>
+                <span className="text-sm select-none">First row is header</span>
               </label>
               
-              <label className="flex items-center">
+              <label className="flex items-center p-2 -m-2 cursor-pointer hover:bg-gray-50 rounded">
                 <input
                   type="checkbox"
                   checked={preserveQuotes}
                   onChange={(e) => setPreserveQuotes(e.target.checked)}
-                  className="mr-2"
+                  className="mr-3 w-5 h-5"
                 />
-                <span className="text-sm">Preserve/add quotes when needed</span>
+                <span className="text-sm select-none">Preserve/add quotes when needed</span>
               </label>
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Button onClick={convertDelimiters}>Convert</Button>
-              <Button onClick={swapDelimiters} variant="secondary">↔ Swap</Button>
-              <Button onClick={loadSampleData} variant="secondary">Load Sample</Button>
-              <Button onClick={clearAll} variant="danger">Clear</Button>
+            <div className="mt-4 grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
+              <Button onClick={convertDelimiters} className="w-full sm:w-auto">Convert</Button>
+              <Button onClick={swapDelimiters} variant="secondary" className="w-full sm:w-auto">↔ Swap</Button>
+              <Button onClick={loadSampleData} variant="secondary" className="w-full sm:w-auto">Load Sample</Button>
+              <Button onClick={clearAll} variant="danger" className="w-full sm:w-auto">Clear</Button>
             </div>
           </CardContent>
         </Card>

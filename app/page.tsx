@@ -61,22 +61,22 @@ export default function Home() {
   return (
     <div className="bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">DevToolbox</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">MyDailyDevTools</h1>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Essential developer tools for everyday tasks. Fast, free, and works offline.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {tools.map((tool) => (
             <Link
               key={tool.href}
               href={tool.href}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-200"
+              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-5 sm:p-6 border border-gray-200 active:scale-95 transform transition-transform"
             >
-              <div className="text-3xl mb-3">{tool.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{tool.title}</h3>
+              <div className="text-2xl sm:text-3xl mb-3">{tool.icon}</div>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">{tool.title}</h3>
               <p className="text-gray-600 text-sm">{tool.description}</p>
             </Link>
           ))}

@@ -28,7 +28,7 @@ export function Input({
       disabled={disabled}
       min={min}
       max={max}
-      className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed ${className}`}
+      className={`w-full px-4 py-3 text-base md:px-3 md:py-2 md:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed ${className}`}
     />
   )
 }
