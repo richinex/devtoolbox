@@ -102,18 +102,18 @@ export default function JsonYamlConverter() {
                 if (!Array.isArray(parent)) {
                     currentArray = []
                     if (stack.length > 1) {
-                        const parentObj = stack[stack.length - 2]
+                        const parentObj = stack[stack.length - 2] as Record<string, unknown>
                         const lastKey = Object.keys(parentObj).pop()
                         if (lastKey) {
                             // Type assertion needed: parentObj is known to be a Record here
-                            (parentObj as Record<string, unknown>)[lastKey] = currentArray
+                            parentObj[lastKey] = currentArray
                             stack[stack.length - 1] = currentArray
                         }
                     }
                 }
                 
                 if (value.includes(': ')) {
-                    const obj = {}
+                    const obj = {} as Record<string, unknown>
                     // Type assertion needed: we know parent is an array here
                     ;(stack[stack.length - 1] as unknown[]).push(obj)
                     stack.push(obj)
@@ -141,7 +141,7 @@ export default function JsonYamlConverter() {
                 const unquotedKey = key.startsWith('"') && key.endsWith('"') ? JSON.parse(key) : key
                 
                 if (!value) {
-                    const obj = {}
+                    const obj = {} as Record<string, unknown>
                     // Type assertion needed: stack top is known to be a Record here
                     (stack[stack.length - 1] as Record<string, unknown>)[unquotedKey] = obj
                     stack.push(obj)
