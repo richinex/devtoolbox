@@ -56,6 +56,12 @@ const tools = [
     icon: '🔒',
   },
   {
+    title: 'CSV ↔ JSON Converter',
+    description: 'Convert between CSV and JSON formats',
+    href: '/csv-json-converter',
+    icon: '📊',
+  },
+  {
     title: 'Text Diff Checker',
     description: 'Compare text differences side-by-side',
     href: '/text-diff',
