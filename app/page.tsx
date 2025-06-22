@@ -91,6 +91,24 @@ const tools = [
     href: '/timestamp-converter',
     icon: '🕐',
   },
+  {
+    title: 'XML Formatter',
+    description: 'Format, validate, and minify XML documents',
+    href: '/xml-formatter',
+    icon: '📄',
+  },
+  {
+    title: 'SQL Formatter',
+    description: 'Format and beautify SQL queries',
+    href: '/sql-formatter',
+    icon: '🗃️',
+  },
+  {
+    title: 'Markdown → HTML',
+    description: 'Convert Markdown to HTML with live preview',
+    href: '/markdown-html',
+    icon: '📝',
+  },
 ]
 
 export default function Home() {
