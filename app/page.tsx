@@ -26,6 +26,12 @@ const tools = [
     icon: '🔄',
   },
   {
+    title: 'YAML Formatter',
+    description: 'Format and validate YAML with error details',
+    href: '/yaml-formatter',
+    icon: '📋',
+  },
+  {
     title: 'URL Encoder/Decoder',
     description: 'Encode and decode URLs safely',
     href: '/url-encoder',
