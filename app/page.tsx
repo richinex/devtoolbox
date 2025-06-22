@@ -79,6 +79,18 @@ const tools = [
     href: '/qr-generator',
     icon: '▢',
   },
+  {
+    title: 'JWT Decoder',
+    description: 'Decode and inspect JSON Web Tokens',
+    href: '/jwt-decoder',
+    icon: '🔐',
+  },
+  {
+    title: 'Timestamp Converter',
+    description: 'Convert Unix timestamps to dates and back',
+    href: '/timestamp-converter',
+    icon: '🕐',
+  },
 ]
 
 export default function Home() {
