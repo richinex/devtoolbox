@@ -17,8 +17,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DevToolbox - Essential Developer Tools",
-  description: "Free online developer tools including JSON formatter, URL encoder, Base64 converter, hash generator, password generator, and more. Fast, secure, and works offline.",
+  title: "Free Online Developer Tools - JSON Formatter, Base64, URL Encoder | MyDailyDevTools",
+  description: "Best free online developer tools: JSON formatter, URL encoder/decoder, Base64 converter, hash generator, password generator, text diff, UUID generator, QR codes. No signup, privacy-focused, works offline.",
+  keywords: "developer tools, json formatter, base64 encoder, url encoder, hash generator, password generator, text diff, uuid generator, qr code generator, delimiter converter, online tools, free tools",
+  authors: [{ name: "MyDailyDevTools" }],
+  openGraph: {
+    title: "Free Online Developer Tools - MyDailyDevTools",
+    description: "Essential developer tools for everyday tasks. JSON formatter, Base64, URL encoder, and more. Fast, free, and privacy-focused.",
+    url: "https://mydailydevtools.com",
+    siteName: "MyDailyDevTools",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Online Developer Tools - MyDailyDevTools",
+    description: "JSON formatter, Base64, URL encoder, and more developer tools. Fast, free, and privacy-focused.",
+  },
+  alternates: {
+    canonical: "https://mydailydevtools.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
 };
 
 export default function RootLayout({

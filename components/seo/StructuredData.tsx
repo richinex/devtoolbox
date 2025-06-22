@@ -17,15 +17,15 @@ export default function StructuredData({ data }: StructuredDataProps) {
 export const organizationStructuredData = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "DevToolbox",
+  "name": "MyDailyDevTools",
   "description": "Essential developer tools for everyday tasks. Fast, free, and privacy-focused.",
-  "url": "https://devtoolbox.dev",
-  "logo": "https://devtoolbox.dev/logo.png",
-  "sameAs": [],
+  "url": "https://mydailydevtools.com",
+  "logo": "https://mydailydevtools.com/logo.png",
+  "sameAs": ["https://github.com/richinex/devtoolbox"],
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer service",
-    "availableLanguage": "English"
+    "availableLanguage": ["English", "Dutch"]
   }
 }
 
@@ -33,12 +33,12 @@ export const organizationStructuredData = {
 export const websiteStructuredData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "DevToolbox",
+  "name": "MyDailyDevTools",
   "description": "Free online developer tools including JSON formatter, URL encoder, Base64 converter, hash generator, password generator, and more.",
-  "url": "https://devtoolbox.dev",
+  "url": "https://mydailydevtools.com",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://devtoolbox.dev/?q={search_term_string}",
+    "target": "https://mydailydevtools.com/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -73,8 +73,8 @@ export function createToolStructuredData(tool: {
     "permissions": "None required",
     "isPartOf": {
       "@type": "WebSite",
-      "name": "DevToolbox",
-      "url": "https://devtoolbox.dev"
+      "name": "MyDailyDevTools",
+      "url": "https://mydailydevtools.com"
     }
   }
 }
@@ -94,8 +94,8 @@ export function createWebPageStructuredData(page: {
     "url": page.url,
     "isPartOf": {
       "@type": "WebSite",
-      "name": "DevToolbox",
-      "url": "https://devtoolbox.dev"
+      "name": "MyDailyDevTools",
+      "url": "https://mydailydevtools.com"
     },
     "inLanguage": "en-US",
     "mainEntity": {
@@ -127,15 +127,15 @@ export const faqStructuredData = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Are DevToolbox tools free to use?",
+      "name": "Are MyDailyDevTools tools free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, all DevToolbox tools are completely free to use. No registration or payment required."
+        "text": "Yes, all MyDailyDevTools tools are completely free to use. No registration or payment required."
       }
     },
     {
       "@type": "Question",
-      "name": "Is my data safe when using DevToolbox tools?",
+      "name": "Is my data safe when using MyDailyDevTools tools?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Absolutely. All tools process data client-side in your browser. No data is sent to our servers or stored anywhere."
@@ -143,7 +143,7 @@ export const faqStructuredData = {
     },
     {
       "@type": "Question",
-      "name": "Do I need to install anything to use DevToolbox?",
+      "name": "Do I need to install anything to use MyDailyDevTools?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "No installation required. All tools work directly in your web browser."
@@ -151,7 +151,7 @@ export const faqStructuredData = {
     },
     {
       "@type": "Question",
-      "name": "Can I use DevToolbox tools offline?",
+      "name": "Can I use MyDailyDevTools tools offline?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Once the page loads, most tools can work offline as they process data client-side."
