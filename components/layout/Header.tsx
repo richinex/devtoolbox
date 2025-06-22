@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 const tools = [
   { title: 'JSON Formatter', href: '/json-formatter', icon: '{}' },
+  { title: 'JSON ↔ YAML', href: '/json-yaml-converter', icon: '🔄' },
   { title: 'URL Encoder', href: '/url-encoder', icon: '🔗' },
   { title: 'Base64 Encoder', href: '/base64', icon: '📄' },
   { title: 'Hash Generator', href: '/hash-generator', icon: '#' },

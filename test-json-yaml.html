@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test JSON-YAML Converter</title>
+</head>
+<body>
+    <h1>JSON-YAML Converter Tests</h1>
+    
+    <script>
+        // JSON to YAML conversion function (simplified from the component)
+        function jsonToYaml(obj, indent = 0) {
+            const spaces = ' '.repeat(indent);
+            
+            if (obj === null) return 'null';
+            if (obj === undefined) return 'null';
+            if (typeof obj === 'boolean') return obj.toString();
+            if (typeof obj === 'number') return obj.toString();
+            if (typeof obj === 'string') {
+                if (obj.includes('\n')) {
+                    return '|\n' + obj.split('\n').map(line => spaces + '  ' + line).join('\n');
+                }
+                if (obj.match(/^[\d.]+$/) || obj.includes(':') || obj.includes('#')) {
+                    return JSON.stringify(obj);
+                }
+                return obj;
+            }
+            
+            if (Array.isArray(obj)) {
+                if (obj.length === 0) return '[]';
+                return obj.map(item => {
+                    const value = jsonToYaml(item, indent + 2);
+                    if (typeof item === 'object' && item !== null) {
+                        return '\n' + spaces + '- ' + value.split('\n').map((line, i) => 
+                            i === 0 ? line : spaces + '  ' + line
+                        ).join('\n').trim();
+                    }
+                    return '\n' + spaces + '- ' + value;
+                }).join('');
+            }
+            
+            if (typeof obj === 'object') {
+                const entries = Object.entries(obj);
+                if (entries.length === 0) return '{}';
+                
+                return entries.map(([key, value]) => {
+                    const yamlValue = jsonToYaml(value, indent + 2);
+                    const needsQuotes = key.includes(' ') || key.includes(':');
+                    const yamlKey = needsQuotes ? JSON.stringify(key) : key;
+                    
+                    if (typeof value === 'object' && value !== null && !Array.isArray(value) && Object.keys(value).length > 0) {
+                        return '\n' + spaces + yamlKey + ':' + yamlValue;
+                    } else if (Array.isArray(value) && value.length > 0) {
+                        return '\n' + spaces + yamlKey + ':' + yamlValue;
+                    } else {
+                        return '\n' + spaces + yamlKey + ': ' + yamlValue;
+                    }
+                }).join('').trim();
+            }
+            
+            return String(obj);
+        }
+
+        // Test cases
+        const testCases = [
+            {
+                name: "Simple object",
+                input: { name: "John", age: 30, active: true },
+                expected: `name: John
+age: 30
+active: true`
+            },
+            {
+                name: "Nested object",
+                input: { 
+                    user: { 
+                        name: "John", 
+                        address: { 
+                            city: "New York", 
+                            zip: "10001" 
+                        } 
+                    } 
+                },
+                expected: `user:
+  name: John
+  address:
+    city: New York
+    zip: "10001"`
+            },
+            {
+                name: "Array of strings",
+                input: { fruits: ["apple", "banana", "orange"] },
+                expected: `fruits:
+  - apple
+  - banana
+  - orange`
+            },
+            {
+                name: "Array of objects",
+                input: { 
+                    users: [
+                        { name: "John", age: 30 },
+                        { name: "Jane", age: 25 }
+                    ]
+                },
+                expected: `users:
+  - name: John
+    age: 30
+  - name: Jane
+    age: 25`
+            },
+            {
+                name: "Special characters",
+                input: { 
+                    special: "value: with: colons",
+                    hash: "# comment",
+                    number: "123"
+                },
+                expected: `special: "value: with: colons"
+hash: "# comment"
+number: "123"`
+            },
+            {
+                name: "Empty collections",
+                input: { emptyArray: [], emptyObject: {} },
+                expected: `emptyArray: []
+emptyObject: {}`
+            },
+            {
+                name: "Null and boolean values",
+                input: { nullValue: null, boolTrue: true, boolFalse: false },
+                expected: `nullValue: null
+boolTrue: true
+boolFalse: false`
+            },
+            {
+                name: "Multiline string",
+                input: { description: "Line 1\nLine 2\nLine 3" },
+                expected: `description: |
+  Line 1
+  Line 2
+  Line 3`
+            }
+        ];
+
+        // Run tests
+        console.log("Running JSON to YAML conversion tests...\n");
+        
+        let passed = 0;
+        let failed = 0;
+        
+        testCases.forEach((test, index) => {
+            console.log(`Test ${index + 1}: ${test.name}`);
+            console.log("Input:", JSON.stringify(test.input));
+            
+            const result = jsonToYaml(test.input);
+            console.log("Output:\n" + result);
+            console.log("Expected:\n" + test.expected);
+            
+            if (result.trim() === test.expected.trim()) {
+                console.log("✅ PASSED\n");
+                passed++;
+            } else {
+                console.log("❌ FAILED\n");
+                failed++;
+            }
+        });
+        
+        console.log(`\nTest Summary: ${passed} passed, ${failed} failed`);
+        
+        // Test error handling
+        console.log("\nTesting error handling:");
+        try {
+            JSON.parse("{invalid json}");
+        } catch (e) {
+            console.log("✅ Invalid JSON properly caught:", e.message);
+        }
+    </script>
+</body>
+</html>

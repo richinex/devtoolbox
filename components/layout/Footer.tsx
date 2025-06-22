@@ -3,6 +3,7 @@ import Link from 'next/link'
 const toolCategories = {
   'Text & Data': [
     { title: 'JSON Formatter', href: '/json-formatter' },
+    { title: 'JSON ↔ YAML Converter', href: '/json-yaml-converter' },
     { title: 'Base64 Encoder', href: '/base64' },
     { title: 'Text Diff Checker', href: '/text-diff' },
     { title: 'Delimiter Converter', href: '/delimiter-converter' },

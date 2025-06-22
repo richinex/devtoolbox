@@ -14,6 +14,12 @@ const tools = [
     icon: '{}',
   },
   {
+    title: 'JSON ↔ YAML Converter',
+    description: 'Convert between JSON and YAML formats',
+    href: '/json-yaml-converter',
+    icon: '🔄',
+  },
+  {
     title: 'URL Encoder/Decoder',
     description: 'Encode and decode URLs safely',
     href: '/url-encoder',
