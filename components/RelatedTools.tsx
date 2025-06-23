@@ -9,11 +9,10 @@ interface RelatedTool {
 }
 
 interface RelatedToolsProps {
-  currentTool: string
   tools: RelatedTool[]
 }
 
-export default function RelatedTools({ currentTool, tools }: RelatedToolsProps) {
+export default function RelatedTools({ tools }: RelatedToolsProps) {
   return (
     <Card className="mt-6">
       <CardHeader>
